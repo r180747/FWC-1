@@ -1,0 +1,206 @@
+% #######################################
+% ########### FILL THESE IN #############
+% #######################################
+\def\mytitle{IMPLEMENTATION OF BOOLEAN LOGIC IN ARDUINO IDE}
+\def\mykeywords{}
+\def\myauthor{B JAYASRI}
+\def\contact{r180747@rguktrkv.ac.in}
+\def\mymodule{}
+% #######################################
+% #### YOU DON'T NEED TO TOUCH BELOW ####
+% #######################################
+\documentclass[10pt, a4paper]{article}
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\twocolumn
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+%colour our links, remove weird boxes
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+%Stop indentation on new paragraphs
+\usepackage[parfill]{parskip}
+%% Arial-like font
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+%Napier logo top right
+\usepackage{watermark}
+%Lorem Ipusm dolor please don't leave any in you final report ;)
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\usepackage{tikz}
+
+\usetikzlibrary{shapes, arrows, chains, decorations.markings,intersections,calc}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+%give us the Capital H that we all know and love
+\usepackage{float}
+%tone down the line spacing after section titles
+\usepackage{titlesec}
+%Cool maths printing
+\usepackage{amsmath}
+\usepackage{tabularx}
+%PseudoCode
+\usepackage{algorithm2e}
+
+\titlespacing{\subsection}{0pt}{\parskip}{-3pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\paragraph}{0pt}{\parskip}{\parskip}
+\newcommand{\figuremacro}[5]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#5\columnwidth]{#2}
+        \caption[#3]{\textbf{#3}#4}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\lstset{
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+
+\thiswatermark{\centering \put(-15,-100.0){\includegraphics[scale=0.3]{logo}} }
+\title{\mytitle}
+  \author{\myauthor\hspace{1em}\\\contact\\FWC22098    IITH-Future Wireless Communications     Assignment-1\hspace{0.5em}\hspace{0.5em}\mymodule}
+\date{}
+\hypersetup{pdfauthor=\myauthor,pdftitle=\mytitle,pdfkeywords=\mykeywords}
+\sloppy
+% #######################################
+% ########### START FROM HERE ###########
+% #######################################
+ 
+ \begin{document}
+ \maketitle
+     \tableofcontents 
+    \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{_mux.png}
+        \caption{\textbf{The logic realised by the circuit shown in figure is}}
+        \label{fig:my_label}
+    \end{figure}
+  \textbf{}{\mykeywords}
+ \section{Abstract}
+ 
+      The objective of this manual is to show how to implement the Boolean function of a given  4x1 multiplexer :
+      
+      \begin{center}
+      Y=(U'V+V'U).(W'X'+WX')
+      \end{center}
+
+\section{Introduction}
+  
+    \paragraph{Mutiplexer}
+    is a combinational  logic circuit designed to switch one  of  the several  inputs lines through a single common output line by the application of a control signal.
+      \\ The implementation of multiplexer takes three steps\\1.To get the truth table of multiplexer\\2.To get the Boolean equation using the truth table by using k map.\\
+      \section{Components}
+     
+       \begin{tabularx}{0.35\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+\hline
+\textbf{Component} &  \textbf{Value} & \textbf{Quantity}\\
+\hline
+Arduino UNO &  & 1 \\  
+\hline
+Bread board & - & 1 \\
+\hline
+Jumper wires & M-M & 8 \\
+\hline
+Led & - & 1\\
+\hline
+Resistor & 150ohms & 1\\
+\hline
+\end{tabularx}
+\begin{center}
+    
+\end{center}
+       \subsection{Arduino} \vspace{5mm}
+      The Arduino uno has some ground pins, analog input pins A0-A3 and digital pins D1-D13 that can be used for both input as well as output. It also has two power pins that can generate 3.3V and 5V.In the following exercises, only the ground, 5V and digital pins will be used.
+   \section{Introduction of 4x1 Multiplexer}
+       \paragraph{ 4x1 Multiplexer } 
+	    has four data inputs I3,I2,I1,I0 two selection lines S1,S0 and one output Y. The block diagram of 4x1 Multiplexer is shown in the following Figure-1. One of these 4 inputs will be connected to the output based on the combination of inputs present at these two selection lines.
+  
+ 
+       
+       
+  \section{Truth table for 4x1 multiplexer}
+   \begin{tabularx}{0.4\textwidth} { 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X | }
+\hline
+ \textbf{S1}& \textbf{S0} & \textbf{Y}\\
+\hline
+0 & 0 & I0 \\  
+\hline
+0&1&I1 \\ 
+\hline
+1&0&I2\\
+\hline
+1&1&I3\\
+\hline
+\end{tabularx}
+\begin{center}
+Truth Table for 4x1 Mux
+\end{center}
+\section{Boolean Equation}
+	 By solving the given multiplexer circuit diagram we get the boolean eayuation as fallows : Y=(U'V+V'U).(W'X'+WX')
+\section{Truth table for given multiplexercircuit diagram}
+\begin{tabularx}{0.46\textwidth} { 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X | }
+  \hline
+ U & V & W & W  & Y\\
+\hline
+0 & 0 & 0 & 0 & 0 \\  
+\hline
+0 & 0 & 0 & 1 & 0 \\ 
+\hline
+0 & 0 & 1 & 0 & 0 \\
+\hline
+0 & 0 & 1 & 1 & 0 \\
+\hline
+0 & 1 & 0 & 0 & 1 \\  
+\hline
+0 & 1 & 0 & 1 & 0 \\ 
+\hline
+0 & 1 & 1 & 0 & 1 \\
+\hline
+0 & 1 & 1 & 1 & 0 \\
+\hline
+1 & 0 & 0 & 0 & 1 \\
+\hline
+1 & 0 & 0 & 1 & 0 \\
+\hline
+1 & 0 & 1 & 0 & 1 \\
+\hline
+1 & 0 & 1 & 1 & 0 \\
+\hline
+1 & 1 & 0 & 0 & 0 \\
+\hline
+1 & 1 & 0 & 1 & 0 \\
+\hline
+1 & 1 & 1 & 0 & 0 \\
+\hline
+1 & 1 & 1 & 1 & 0 \\
+\hline
+\end{tabularx}
+\begin{center}
+TABLE 1
+\end{center}
+\section{Hardware}
+1. Connect Arduino to the computer and upload the code in to the arduino.Make 2,3,4,5 pins as input pins and 13 pin as output pin. Corresponds to the given inputs for the selection lines of multiplexer the outputs will be obtained at 13 pin. The builtin led in arduino is the indication of the output of multiplexer.
+\section{Software}
+ Download the following code
+ \begin{lstlisting}
+https://github.com/dudekulauseni123/FWC0982022/upload/main/Assignment_ide
+ \end{lstlisting}
+\end{document}
+
+   
+ 
